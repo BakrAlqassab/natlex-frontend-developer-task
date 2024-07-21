@@ -10,6 +10,7 @@
   </template>
   
   <script>  
+    import User from "@/models/User"
   export default {
     data() {
       return {
@@ -21,6 +22,17 @@
     methods: {
         register() {
              // Handle register logic here
+             console.log("register clicked")
+
+             User.insert({
+                data:{
+                    name:this.name,
+                    email:this.email,
+                    password: this.password
+                }
+              
+             })
+             this.$router.push("/login")
       }
     }
   }

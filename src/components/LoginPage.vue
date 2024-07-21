@@ -9,6 +9,7 @@
   </template>
   
   <script>
+  import User from "@/models/User"
   export default {
     data() {
       return {
@@ -19,6 +20,13 @@
     methods: {
       login() {
         // Handle login logic here
+        const user = User.query().where('email', this.email).where('password', this.password).first()
+        if (user) {
+          this.$store.commit('setAuthenticatedUser', user)
+          this.$router.push('/')
+        } else {
+          alert('Invalid credentials')
+        }
       }
     }
   }

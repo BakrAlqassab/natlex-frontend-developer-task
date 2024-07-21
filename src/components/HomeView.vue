@@ -72,8 +72,10 @@
   </template>
   
   <script>
+   import { mapState } from 'vuex'
     export default {
-      name: 'HelloWorld',
+      name: 'HomeView',
+      ...mapState(['entities', 'authenticatedUser']),
   
       data: () => ({
         importantLinks: [
