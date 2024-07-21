@@ -5,8 +5,10 @@
       color="#4c9988"
       dark
     >  
-      <v-btn to="/login" text>Login</v-btn>
-      <v-btn to="/register" text>Register</v-btn>
+      <v-btn  v-if="!isAuthenticated" to="/login" text>Login</v-btn>
+      <v-btn   v-if="!isAuthenticated" to="/register" text>Register</v-btn>
+      <v-btn v-if="isAuthenticated" to="/" text>Dashboard</v-btn>
+      <v-btn v-if="isAuthenticated" @click="logout" text>Logout</v-btn>
       <v-spacer></v-spacer>
       <div class="d-flex align-center" style="box-shadow: 0px 0px 8px lightblue inset; padding: 15px;">
         <v-btn to="/" text color="#4c9988"> 
@@ -41,13 +43,21 @@
 
 <script>
 
+import { mapGetters } from 'vuex'
+
+
 export default {
   name: 'App',
+  computed: {
+    ...mapGetters(['isAuthenticated'])
+  },
 
-  // components: {
-  //   HelloWorld,
-  // },
-
+  methods: {
+    logout() {
+      this.$store.commit('logout')
+      this.$router.push('/login')
+    }
+  },
   data: () => ({
     //
   }),
