@@ -2,56 +2,51 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color="#4c9988"
       dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
+    >  
+      <v-btn to="/login" text>Login</v-btn>
+      <v-btn to="/register" text>Register</v-btn>
+      <v-spacer></v-spacer>
+      <div class="d-flex align-center" style="box-shadow: 0px 0px 8px lightblue inset; padding: 15px;">
+        <v-btn to="/" text color="#4c9988"> 
         <v-img
           alt="Vuetify Name"
+          :elevation="20"
           class="shrink mt-1 hidden-sm-and-down"
           contain
           min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
+          src="https://static.tildacdn.one/tild3233-6662-4763-a335-326231643561/_1.png"
+          width="150"
         />
+      </v-btn>
       </div>
 
       <v-spacer></v-spacer>
 
-      <v-btn
+      <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
       >
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
-
     <v-main>
-      <HelloWorld/>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
 
-  components: {
-    HelloWorld,
-  },
+  // components: {
+  //   HelloWorld,
+  // },
 
   data: () => ({
     //
