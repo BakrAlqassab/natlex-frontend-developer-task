@@ -3,11 +3,15 @@ import Vuex from 'vuex'
 import VuexORM from '@vuex-orm/core'
 import database from './database'
 import { initializeData } from './actions'
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  plugins: [VuexORM.install(database)],
+  plugins: [VuexORM.install(database),  createPersistedState({
+    key: 'my-vuex-store',
+    storage: window.localStorage
+  })],
   state: {
     authenticatedUser: null
   },
