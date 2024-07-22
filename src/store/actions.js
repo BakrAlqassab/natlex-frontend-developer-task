@@ -1,4 +1,4 @@
-import User from '@/models/User'
+// import User from '@/models/User'
 import Sensor from '@/models/Sensor'
 
 export const initializeData = () => {
