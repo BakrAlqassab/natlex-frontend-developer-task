@@ -1,7 +1,10 @@
-import User from '@/models/User'
+// import User from '@/models/User'
 import Sensor from '@/models/Sensor'
 
 export const initializeData = () => {
+
+  // For mock user 
+  
 // User.insert({
 //     data: {
 //       id: 1,
