@@ -22,9 +22,7 @@
         // Handle login logic here
         const user = User.query().where('email', this.email).where('password', this.password).first()
         if (user) {
-            const token = "ttttt"
           this.$store.commit('setAuthenticatedUser', user)
-          localStorage.setItem('token', token);
           this.$router.push('/dashboard')
         } else {
           alert('Invalid credentials')
