@@ -24,7 +24,9 @@
              // Handle register logic here
              console.log("register clicked")
 
-             User.insert({
+             const user = User.query().where('email', this.email).first()
+             if(!user) {
+              User.insert({
                 data:{
                     name:this.name,
                     email:this.email,
@@ -32,6 +34,11 @@
                 }
               
              })
+             } else {
+              alert("already thre account with this email, Please login")
+             }
+
+          
              this.$router.push("/login")
       }
     }

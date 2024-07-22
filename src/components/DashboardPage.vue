@@ -210,7 +210,7 @@
   }
   </script>
   
-  <style>
+  <style scoped>
 .no-charts-div {
   display: flex;
   justify-content: center;
