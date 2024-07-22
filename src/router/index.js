@@ -4,6 +4,7 @@ import LoginPage from '@/components/LoginPage.vue'
 import RegisterPage from '@/components/RegisterPage.vue'
 import HomeView from '@/components/HomeView.vue'
 import DashboardPage from '@/components/DashboardPage.vue'
+import AdminPage from '@/components/AdminPage.vue'
 import store from '@/store'
 
 Vue.use(Router)
@@ -16,6 +17,7 @@ const router =new Router({
     { path: '/register', name: 'RegisterPage', component: RegisterPage },
     { path: '/', name: 'HomeView', component: HomeView },
     { path: '/dashboard', name: 'DashboardPage', component: DashboardPage ,  meta: { requiresAuth: true }},
+    { path: '/admin', name: 'AdminPage', component: AdminPage ,  meta: { requiresAuth: true }},
   ]
 })
 
