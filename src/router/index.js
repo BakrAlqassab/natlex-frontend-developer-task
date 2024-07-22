@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import LoginPage from '@/components/LoginPage.vue'
 import RegisterPage from '@/components/RegisterPage.vue'
 import HomeView from '@/components/HomeView.vue'
+import DashboardPage from '@/components/DashboardPage.vue'
 import store from '@/store'
 
 Vue.use(Router)
@@ -13,7 +14,8 @@ const router =new Router({
  
     { path: '/login', name: 'LoginPage', component: LoginPage },
     { path: '/register', name: 'RegisterPage', component: RegisterPage },
-    { path: '/', name: 'HomeView', component: HomeView ,  meta: { requiresAuth: true }},
+    { path: '/', name: 'HomeView', component: HomeView },
+    { path: '/dashboard', name: 'DashboardPage', component: DashboardPage ,  meta: { requiresAuth: true }},
   ]
 })
 

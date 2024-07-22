@@ -9,6 +9,7 @@ export default class User extends Model {
     name :this.attr(""),
     email :this.attr(""),
     password :this.attr(""),
+    charts: this.attr([]),
   }
   }
 }

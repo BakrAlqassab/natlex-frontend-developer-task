@@ -7,7 +7,7 @@
     >  
       <v-btn  v-if="!isAuthenticated" to="/login" text>Login</v-btn>
       <v-btn   v-if="!isAuthenticated" to="/register" text>Register</v-btn>
-      <v-btn v-if="isAuthenticated" to="/" text>Dashboard</v-btn>
+      <v-btn v-if="isAuthenticated" to="/dashboard" text>Dashboard</v-btn>
       <v-btn v-if="isAuthenticated" @click="logout" text>Logout</v-btn>
       <v-spacer></v-spacer>
       <div class="d-flex align-center" style="box-shadow: 0px 0px 8px lightblue inset; padding: 15px;">
