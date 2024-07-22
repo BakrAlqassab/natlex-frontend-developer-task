@@ -2,7 +2,7 @@
 
     <v-container>
 
-        <div> Admins</div>
+        <div class="title-container"> <h2>Admin Page</h2></div>
 
         <v-row style="display: flex; max-height: 1000px; overflow: auto;">
 
@@ -101,6 +101,11 @@ export default {
     border-style: dotted;
 }
 
+.title-container{
+    margin: 20px 0;
+    padding: 10px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
@@ -109,7 +114,7 @@ export default {
     user-select: none;
     height: 12rem;
     cursor:pointer;
-    background-image: url(/images/placeholder.jpg);
+    /* background-image: url(/images/placeholder.jpg); */
 }
 
 .no-charts-div {
@@ -121,7 +126,7 @@ export default {
 
 .no-charts-text {
   font-style: italic;
-  padding: 20px;
+  padding: 20px 0;
   box-shadow: 2px 2px 10px inset  black;
 }
 
