@@ -12,12 +12,13 @@ User.insert({
     }
   })
 
-  // Ensure sensors are inserted into the Sensor model
+  // in fututre this data can come from Real DB
+  
   Sensor.insert({
     data: [
       {
         id: 1,
-        type: 'temperature BB',
+        type: 'temperature',
         readings: [22, 23, 21, 22, 24, 23, 25]
       },
       {
