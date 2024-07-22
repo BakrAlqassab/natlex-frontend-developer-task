@@ -13,8 +13,8 @@
   export default {
     data() {
       return {
-        email: '',
-        password: ''
+        email: 'alqassab31@gmail.com',
+        password: 'password'
       }
     },
     methods: {
@@ -23,7 +23,7 @@
         const user = User.query().where('email', this.email).where('password', this.password).first()
         if (user) {
           this.$store.commit('setAuthenticatedUser', user)
-          this.$router.push('/')
+          this.$router.push('/dashboard')
         } else {
           alert('Invalid credentials')
         }
