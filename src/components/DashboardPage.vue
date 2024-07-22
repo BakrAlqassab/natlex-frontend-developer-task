@@ -98,7 +98,7 @@
           charts: [...user.charts, newChart]
         })
   
-        console.log('Updated User Charts:', user.charts)
+        console.log('Updated User Charts:', user)
     
       },
       combineSensorData(sensors) {
@@ -113,7 +113,7 @@
   }
   </script>
   
-  <style>
+  <style scoped>
 .no-charts-div {
   display: flex;
   justify-content: center;
