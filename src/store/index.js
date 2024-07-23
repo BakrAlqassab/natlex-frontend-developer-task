@@ -7,7 +7,21 @@ import { initializeData } from './actions'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+<<<<<<< Updated upstream
   plugins: [VuexORM.install(database)],
+=======
+  plugins: [VuexORM.install(database),  
+    createPersistedState({
+      key: 'my-vuex-store',
+      storage: window.localStorage,
+      reducer: state => ({
+        authenticatedUser: state.authenticatedUser,
+        entities: state.entities
+      })
+    })
+
+],
+>>>>>>> Stashed changes
   state: {
     authenticatedUser: null
   },

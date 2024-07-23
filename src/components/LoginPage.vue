@@ -10,6 +10,7 @@
   
   <script>
   import User from "@/models/User"
+  import { v4 as uuidv4 } from 'uuid';
   export default {
     data() {
       return {
@@ -22,6 +23,11 @@
         // Handle login logic here
         const user = User.query().where('email', this.email).where('password', this.password).first()
         if (user) {
+<<<<<<< Updated upstream
+=======
+        
+            const token = uuidv4;
+>>>>>>> Stashed changes
           this.$store.commit('setAuthenticatedUser', user)
           this.$router.push('/dashboard')
         } else {

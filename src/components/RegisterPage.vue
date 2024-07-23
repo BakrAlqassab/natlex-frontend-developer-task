@@ -30,7 +30,8 @@
                 data:{
                     name:this.name,
                     email:this.email,
-                    password: this.password
+                    password: this.password,
+                    role: "Admin"
                 }
               
              })

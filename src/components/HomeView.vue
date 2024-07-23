@@ -11,63 +11,30 @@
           />
         </v-col>
   
-        <v-col class="mb-4">
-          <h1 class="display-2 font-weight-bold mb-3">
-            Welcome to Bakr's land
-          </h1>
-  
-          <p class="subheading font-weight-regular">
-            For help and collaboration with other Vuetify developers,
-            <br>please join our online
-            <a
-              href="https://community.vuetifyjs.com"
-              target="_blank"
-            >Discord Community</a>
-          </p>
-        </v-col>
-  
-        <v-col
-          class="mb-5"
-          cols="12"
-        >
-          <h2 class="headline font-weight-bold mb-3">
-            What's next?
+        <v-col class="mb-4 d-flex flex-column">
+          <h2 class=" font-weight-bold mb-3 ma-auto pa-10">
+            Natlex develops web and mobile applications that used on construction sites anywhere from Canada to Singapore.
           </h2>
-  
-          <v-row justify="center">
-            <a
-              v-for="(next, i) in whatsNext"
-              :key="i"
-              :href="next.href"
-              class="subheading mx-3"
+<!--   
+          <p class="subheading font-weight-regular"> -->
+    
+            <br>
+        
+            <v-btn outlined class="aboutusBtn">
+                <a
+              href="https://natlex.fi/#rec548962821"
               target="_blank"
-            >
-              {{ next.text }}
-            </a>
-          </v-row>
+              color="red"
+            >More about us</a>
+            </v-btn>         
+          <!-- </p> -->
+          <v-text>To start using the app, please <v-btn text to="/register" >create an account</v-btn> ,and create new charts and check the other accounts statistics</v-text>
+
         </v-col>
+        </v-row>
   
-        <v-col
-          class="mb-5"
-          cols="12"
-        >
-          <h2 class="headline font-weight-bold mb-3">
-            Important Links
-          </h2>
-  
-          <v-row justify="center">
-            <a
-              v-for="(link, i) in importantLinks"
-              :key="i"
-              :href="link.href"
-              class="subheading mx-3"
-              target="_blank"
-            >
-              {{ link.text }}
-            </a>
-          </v-row>
-        </v-col>
-      </v-row>
+   
+
     </v-container>
   </template>
   
@@ -78,43 +45,21 @@
       ...mapState(['entities', 'authenticatedUser']),
   
       data: () => ({
-        importantLinks: [
-          {
-            text: 'Documentation',
-            href: 'https://vuetifyjs.com',
-          },
-          {
-            text: 'Chat',
-            href: 'https://community.vuetifyjs.com',
-          },
-          {
-            text: 'Made with Vuetify',
-            href: 'https://madewithvuejs.com/vuetify',
-          },
-          {
-            text: 'Twitter',
-            href: 'https://twitter.com/vuetifyjs',
-          },
-          {
-            text: 'Articles',
-            href: 'https://medium.com/vuetify',
-          },
-        ],
-        whatsNext: [
-          {
-            text: 'Explore components',
-            href: 'https://vuetifyjs.com/components/api-explorer',
-          },
-          {
-            text: 'Select a layout',
-            href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-          },
-          {
-            text: 'Frequently Asked Questions',
-            href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-          },
-        ],
       }),
     }
-  </script>
+</script>
+<style scoped>
+
+.container {
+    background-image: url(https://static.tildacdn.one/tild3862-3531-4835-a331-633462653930/world-map0da17775.svg);
+    background-position: center;
+    height: 100%;
+}
+
+.aboutusBtn {
+    width: 220px;
+    padding: 20px;
+    margin: 20px auto;
+}
+</style>
   

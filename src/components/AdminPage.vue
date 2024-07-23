@@ -2,35 +2,46 @@
 
     <v-container>
 
-        <div class="title-container"> <h2>Admin Page</h2></div>
+        <div class="title-container">
+            <h2>Users</h2>
+        </div>
+        <v-sheet class="mx-auto" elevation="8">
+            <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
+                <v-slide-group-item class="d-flex">
+                    <v-card cols="2" v-for="(user, index) in allUsers" :key="index"
+                        :class="{'active':user.id === selectedUserID }" class=" pa-2 rounded m-2 card "
+                        @click="userInfo(user.id)">
+                        <v-card-subtitle class="py-0">
+                            Analytics specialist
+                        </v-card-subtitle>
 
-        <v-row style="display: flex; max-height: 1000px; overflow: auto;">
+                        <v-card-title>
+                         Name:   {{ user.name }}
+                        </v-card-title>
 
-            <v-col cols="3" v-for="(user, index) in allUsers" :key="index" :class="{'dotted':user.id === selectedUserID }" class="flex flex-col gap-2 w-full select-none card" @click="userInfo(user.id)">
-                {{user.id}} --- {{selectedUserID}}
+                        <v-card-text>
+                         Email:   {{ user.email }}
+                        </v-card-text>
+                        <v-card-text>
+                        Role:    {{ user.role }}
+                        </v-card-text>
+                    </v-card>
+                </v-slide-group-item>
+            </v-slide-group>
+        </v-sheet>
+        <hr style="margin:20px" />
+        <div class="title-container">
+            <h2>Users charts</h2>
+        </div>
 
-                <div >
-                    <div className="aspect-square  w-full relative overflow-hidden rounded-xl  ">
-                        {{user.name}} - {{ user.id }}
-                    </div>
-                </div>
-
-                <!-- <div style="height: 150px;" >
-                  
-                </div> -->
-
-            </v-col>
-        </v-row>
-        <hr style="margin:20px"/>
-
-        <v-row  v-if="selectedUserCharts.length" style="display: flex; max-height: 1000px; overflow: auto;">
+        <v-row v-if="selectedUserCharts.length" style="display: flex; max-height: 1000px; overflow: auto;">
             <v-col cols="12" v-for="(chart, index) in selectedUserCharts" :key="index">
                 <highcharts :options="getChartOptions(chart)"></highcharts>
             </v-col>
         </v-row>
-        <div v-else class='no-charts-div'>
-        <v-text class="no-charts-text">No charts added yet!</v-text>
-    </div>
+        <div v-else class='noChartsDiv'>
+            <v-text class="noChartsText">No charts added for this user yet!</v-text>
+        </div>
     </v-container>
 </template>
 <script>
@@ -46,7 +57,8 @@ export default {
             allUsers:User.all(),
             // selectedUserCharts:User.all()[0].charts,
             selectedUserCharts:User.all()[0].charts,
-            selectedUserID:User.all()[0].id
+            selectedUserID:User.all()[0].id,
+            model: null,
         }
 
       
@@ -97,8 +109,16 @@ export default {
 </script>
 <style scoped>
 
-.dotted {
-    border-style: dotted;
+::v-deep  .v-card__title {
+    padding: 8px 16px !important;
+}
+
+::v-deep  .v-card__text {
+    padding: 4px 16px !important;
+}
+
+.active {
+    border:solid 1px black;
 }
 
 .title-container{
@@ -107,27 +127,32 @@ export default {
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    user-select: none;
-    height: 12rem;
-    cursor:pointer;
-    /* background-image: url(/images/placeholder.jpg); */
+
+
+   width:240px;
+   height:200px;
+    margin:10px
 }
 
-.no-charts-div {
+.noChartsDiv {
     height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.no-charts-text {
-  font-style: italic;
-  padding: 20px 0;
-  box-shadow: 2px 2px 10px inset  black;
+.noChartsText {
+  padding: 20px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+
+
+@media screen and (max-width: 768px) {
+.card {
+
+   width:175px;
+}
 }
 
 </style>
