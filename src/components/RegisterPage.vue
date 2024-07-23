@@ -16,7 +16,7 @@
       return {
         name: '',
         email: '',
-        password: ''
+        password: '',
       }
     },
     methods: {
@@ -32,13 +32,11 @@
                     email:this.email,
                     password: this.password,
                     role: "Admin"
-                }
-              
+                }              
              })
              } else {
               alert("already thre account with this email, Please login")
              }
-
           
              this.$router.push("/login")
       }

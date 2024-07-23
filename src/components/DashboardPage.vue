@@ -1,26 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <v-container>
-      <!-- <v-btn @click="logout">Logout</v-btn> -->
-      <v-btn @click="addChart">Add Chart</v-btn>
-      <v-select
-        v-model="selectedType"
-        :items="chartTypes"
-        label="Select Chart Type"
-      ></v-select>
-      <v-color-picker
-        v-model="selectedColor"
-        label="Select Line/Fill Color"
-      ></v-color-picker>
-      <v-select
-        v-model="selectedSensors"
-        :items="sensorOptions"
-        label="Select Sensors"
-        multiple
-      ></v-select>
-    </v-container>
-  </template>
-=======
   <v-container>
     <!-- <v-btn @click="logout">Logout</v-btn> -->
 
@@ -51,24 +29,26 @@
     </div>
   </v-container>
 </template>
->>>>>>> Stashed changes
   
   <script>
   import User from '@/models/User'
   import Sensor from '@/models/Sensor'
   import { mapState } from 'vuex'
-  // import { Chart } from 'highcharts-vue'
+  import { Chart } from 'highcharts-vue'
   
   export default {
-    // components: {
-    //   highcharts: Chart
-    // },
+    components: {
+      highcharts: Chart
+    },
     data() {
       return {
         selectedType: 'line',
-        selectedColor: '#000000',
+        // selectedColor: '#000000',
+        selectedColor: '#CF9FFF',
         selectedSensors: [],
         chartTypes: ['line', 'bar',"column"],
+        dateRange: [new Date().toISOString().substr(0, 10), new Date().toISOString().substr(0, 10)],
+        filteredCharts: []
       }
     },
     mounted(){
@@ -76,8 +56,6 @@
     },
     computed: {
       ...mapState(['entities', 'authenticatedUser']),
-<<<<<<< Updated upstream
-=======
       userCharts() {
         if (!this.authenticatedUser) return []
         const user = User.query().with('charts').find(this.authenticatedUser.id)
@@ -85,10 +63,11 @@
         // this.filterChartsByDate()
         return user ? user.charts : []
       },
->>>>>>> Stashed changes
       sensorOptions() {
 
         // For have specific sensors for each user to collect data from
+        // to do that just add array called "sensors" in the model/Sensor and add the values in the initialValues actions.js, or have new UI Fields for that
+        // PReferably is coming from DB or use static one
 
         // if (!this.authenticatedUser) return []
         // const user = User.query().with('sensors').find(this.authenticatedUser.id)
@@ -105,8 +84,6 @@
 
       },
     },
-<<<<<<< Updated upstream
-=======
     watch: {
       // selectedSensors(newVal) {
       //   console.log('Selected Sensors:', newVal)
@@ -120,7 +97,6 @@
         this.filterChartsByDate()
       }
     },
->>>>>>> Stashed changes
     methods: {
       logout() {
         this.$store.commit('logout')
@@ -132,6 +108,7 @@
           return
         }
   
+        console.log('Selected Sensor IDs:', this.selectedSensors)
         const selectedSensors = this.selectedSensors.map(id => {
           const sensor = Sensor.find(id)
           console.log('Found Sensor:', sensor)
@@ -160,8 +137,13 @@
           charts: [...user.charts, newChart]
         })
   
-        console.log('Updated User Charts:', user)
-    
+        console.log('Updated User Charts:', user.charts)
+  
+        // Update filtered charts
+        this.filterChartsByDate()
+  
+        // Force reactivity
+        this.$forceUpdate()
       },
       combineSensorData(sensors) {
         const combinedData = sensors.map(sensor => ({
@@ -171,8 +153,6 @@
         console.log('Combined Data:', combinedData)
         return combinedData
       },
-<<<<<<< Updated upstream
-=======
       getChartOptions(chart) {
         console.log('Chart Data:', chart)
         return {
@@ -236,7 +216,6 @@
         // console.log(this.userCharts)
         // console.log('Filtered Charts:', this.filtefilteredChartsredCharts)
       }
->>>>>>> Stashed changes
     }
   }
   </script>
@@ -266,9 +245,6 @@
 
 .noChartsText {
   padding: 20px;
-<<<<<<< Updated upstream
-  box-shadow: 2px 2px 10px inset  black;
-=======
   /* box-shadow: 1px 1px 5px inset  black; */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -284,6 +260,5 @@
     max-width: 100% !important;
 
   }
->>>>>>> Stashed changes
 }
 </style>
