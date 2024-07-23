@@ -46,6 +46,8 @@ export default {
     logout() {
       this.$store.commit('logout')
       localStorage.removeItem('token');
+      localStorage.setItem('my-vuex-store', JSON.stringify(this.$store.state));
+      localStorage.setItem('redirectTo', '/login');
       this.$router.push('/login')
     }
   },

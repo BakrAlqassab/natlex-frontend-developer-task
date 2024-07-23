@@ -13,8 +13,8 @@ const router =new Router({
   mode: 'history',
   routes: [
  
-    { path: '/login', name: 'LoginPage', component: LoginPage },
-    { path: '/register', name: 'RegisterPage', component: RegisterPage },
+    { path: '/login', name: 'LoginPage', component: LoginPage ,  meta: { notRequiresAuth: true }},
+    { path: '/register', name: 'RegisterPage', component: RegisterPage ,  meta: { notRequiresAuth: true } },
     { path: '/', name: 'HomeView', component: HomeView },
     { path: '/dashboard', name: 'DashboardPage', component: DashboardPage ,  meta: { requiresAuth: true }},
     { path: '/admin', name: 'AdminPage', component: AdminPage ,  meta: { requiresAuth: true }},
@@ -27,6 +27,12 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
       if (!store.getters.isAuthenticated) { 
         next({ name: 'LoginPage' })
+      } else {
+        next()
+      }
+    }  if (to.matched.some(record => record.meta.notRequiresAuth)) {
+      if (store.getters.isAuthenticated) { 
+        next({ name: 'HomeView' })
       } else {
         next()
       }

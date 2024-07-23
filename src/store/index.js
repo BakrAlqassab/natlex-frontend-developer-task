@@ -7,7 +7,7 @@ import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   plugins: [VuexORM.install(database),  
     createPersistedState({
       key: 'my-vuex-store',
@@ -28,13 +28,27 @@ export default new Vuex.Store({
     },
     logout(state) {
       state.authenticatedUser = null
-    }
+    },
+    updateStateFromStorage(state) {
+  
+      const storageState = JSON.parse(localStorage.getItem('my-vuex-store'));
+      if (storageState) {
+        this.replaceState(Object.assign(state, storageState));
+      }
+    },
   },
   actions: {
     initializeData
   },
+
   getters: {
     isAuthenticated: state => !!state.authenticatedUser,
     authenticatedUser: state => state.authenticatedUser
   }
 })
+
+window.addEventListener('storage', () => {
+  store.commit('updateStateFromStorage');
+});
+
+export default store;

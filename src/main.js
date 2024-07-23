@@ -15,3 +15,9 @@ new Vue({
   },
   render: h => h(App)
 }).$mount('#app')
+
+window.addEventListener('storage', (event) => {
+  if (event.key === 'redirectTo' && event.newValue) {
+    router.push(event.newValue);
+  }
+});

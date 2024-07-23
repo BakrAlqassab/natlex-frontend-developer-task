@@ -26,6 +26,8 @@
           const token = uuidv4;
           this.$store.commit('setAuthenticatedUser', user)
           localStorage.setItem('token', token);
+          localStorage.setItem('my-vuex-store', JSON.stringify(this.$store.state));
+          localStorage.setItem('redirectTo', '/dashboard');
           this.$router.push('/dashboard')
         } else {
           alert('Invalid credentials')
