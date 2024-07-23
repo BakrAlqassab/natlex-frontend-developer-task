@@ -1,13 +1,14 @@
 <template>
     <v-container>
       <v-row class="text-center">
-        <v-col cols="12">  
+        <v-col cols="12" class="logo">  
             <v-img
             src="https://static.tildacdn.one/tild3233-6662-4763-a335-326231643561/_1.png"
             class="my-3 mx-auto"
             contain
             height="100"
-            width="150"
+            width="200"
+      
           />
         </v-col>
   
@@ -60,6 +61,10 @@
     width: 220px;
     padding: 20px;
     margin: 20px auto;
+}
+
+.logo {
+ box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px;
 }
 </style>
   

@@ -138,6 +138,9 @@
         })
   
         console.log('Updated User Charts:', user.charts)
+
+        // Emit changes to local storage
+        localStorage.setItem('my-vuex-store', JSON.stringify(this.$store.state));
   
         // Update filtered charts
         this.filterChartsByDate()
