@@ -7,10 +7,10 @@
         </div>
         <v-sheet class="mx-auto" elevation="8">
             <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
-                <v-slide-group-item class="d-flex">
-                    <v-card cols="2" v-for="(user, index) in allUsers" :key="index"
-                        :class="{'active':user.id === selectedUserID }" class=" pa-2 rounded m-2 card "
-                        @click="userInfo(user.id)">
+                <v-slide-item v-for="(user, index) in allUsers" :key="index" class="d-flex">
+                    <v-card cols="2" 
+                        :class="{'active':user.id === selectedUserID }" class=" pa-2 rounded m-2 card flex-column "
+                        @click="()=>selectedUserID = user.id">
                         <v-card-subtitle class="py-0">
                             Analytics specialist
                         </v-card-subtitle>
@@ -26,84 +26,67 @@
                         Role:    {{ user.role }}
                         </v-card-text>
                     </v-card>
-                </v-slide-group-item>
+                </v-slide-item>
             </v-slide-group>
         </v-sheet>
+        <hr style="margin:20px" />
+        <v-date-picker class="w-50 ma-auto" v-model="dateRange" range label="Select Date Range"
+        @change="filterChartsByDate"></v-date-picker>
         <hr style="margin:20px" />
         <div class="title-container">
             <h2>Users charts</h2>
         </div>
 
-        <v-row v-if="selectedUserCharts.length" style="display: flex; max-height: 1000px; overflow: auto;">
-            <v-col cols="12" v-for="(chart, index) in selectedUserCharts" :key="index">
+        <v-row v-if="filteredCharts.length" style="display: flex; max-height: 1000px; overflow: auto;">
+            <v-col cols="12" v-for="(chart, index) in filteredCharts" :key="index">
                 <highcharts :options="getChartOptions(chart)"></highcharts>
             </v-col>
         </v-row>
         <div v-else class='noChartsDiv'>
-            <v-text class="noChartsText">No charts added for this user yet!</v-text>
+             <span class="noChartsText">No charts added for this user yet!</span>
         </div>
     </v-container>
 </template>
 <script>
 import User from "../models/User"
 import { Chart } from 'highcharts-vue'
+import ChartMixin from "../mixins/chart";
 
 export default {
+    mixins: [ChartMixin],
     components: {
       highcharts: Chart
     },
     data() {
         return {
             allUsers:User.all(),
-            // selectedUserCharts:User.all()[0].charts,
             selectedUserCharts:User.all()[0].charts,
             selectedUserID:User.all()[0].id,
             model: null,
+            dateRange: [new Date().toISOString().substr(0, 10), new Date().toISOString().substr(0, 10)],
+            filteredCharts: []
         }
-
-      
     },
-    methods: {
-        getChartOptions(chart) {
-        console.log('Chart Data:', chart)
-        return {
-          title: {
-            text: 'Sensor Data Chart'
-          },
-          chart: {
-            type: chart.type
-            },
-          series: chart.data.map(sensorData => ({
-            name: sensorData.name,
-            data: sensorData.data,
-            color: chart.color
-          })),
-          xAxis: {
-            categories: chart.data[0].data.map((_, index) => `Point ${index + 1}`)
-          },
-          yAxis: {
-            title: {
-              text: 'Values'
-            }
-          }
-        }
+    mounted(){
+            this.adjustChartsDates()
+            this.filterChartsByDate()
+    },
+    watch: {
+        selectedUserID() {
+        this.filterChartsByDate()
       },
-        userInfo(userId) {
-            this.selectedUserID = userId
-                console.log("cliked User");
-                console.log(userId);
+      dateRange() {
+        this.filterChartsByDate()
+      }
+    },
+    computed: {
+        userCharts() {
+        if (!this.selectedUserID) return []
+        const userData = User.query().with('charts').find(this.selectedUserID)
 
-                if (!userId) return []
-        const userData = User.query().with('charts').find(userId)
-        console.log('User Charts:', userData ? userData.charts : [])
-        console.log(userData.charts)
-        this.selectedUserCharts = userData.charts;
         return userData ? userData.charts : []
-
-        }
-    }
-
-
+      },
+    },
 }
 
 </script>
@@ -127,8 +110,6 @@ export default {
 }
 
 .card {
-
-
    width:240px;
    height:200px;
     margin:10px
@@ -149,10 +130,8 @@ export default {
 
 
 @media screen and (max-width: 768px) {
-.card {
-
+  .card {
    width:175px;
 }
 }
-
 </style>

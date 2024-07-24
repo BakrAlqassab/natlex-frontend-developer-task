@@ -15,13 +15,9 @@
         <v-col class="mb-4 d-flex flex-column">
           <h2 class=" font-weight-bold mb-3 ma-auto pa-10">
             Natlex develops web and mobile applications that used on construction sites anywhere from Canada to Singapore.
-          </h2>
-<!--   
-          <p class="subheading font-weight-regular"> -->
-    
+          </h2>    
             <br>
-        
-            <v-btn outlined class="aboutusBtn">
+            <v-btn outlined class="aboutusBtn"  aria-label=" REdiect to the abous page">
                 <a
               href="https://natlex.fi/#rec548962821"
               target="_blank"
@@ -29,13 +25,10 @@
             >More about us</a>
             </v-btn>         
           <!-- </p> -->
-          <v-text>To start using the app, please <v-btn text to="/register" >create an account</v-btn> ,and create new charts and check the other accounts statistics</v-text>
+          <span>To start using the app, please <v-btn text to="/register"  aria-label="Register new user btn" >create an account</v-btn> ,and create new charts and check the other accounts statistics</span>
 
         </v-col>
         </v-row>
-  
-   
-
     </v-container>
   </template>
   
