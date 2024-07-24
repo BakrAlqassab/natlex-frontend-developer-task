@@ -15,15 +15,7 @@
       </div>
 
       <v-spacer></v-spacer>
-      <v-btn v-if="isAuthenticated" @click="logout" text>Logout</v-btn>
-      <!-- <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn> -->
+      <v-btn v-if="isAuthenticated" label="logout Btn" @click="logout" text>Logout</v-btn>
     </v-app-bar>
     <v-main>
       <router-view></router-view>
@@ -46,8 +38,6 @@ export default {
     logout() {
       this.$store.commit('logout')
       localStorage.removeItem('token');
-      localStorage.setItem('my-vuex-store', JSON.stringify(this.$store.state));
-      localStorage.setItem('redirectTo', '/login');
       this.$router.push('/login')
     }
   },

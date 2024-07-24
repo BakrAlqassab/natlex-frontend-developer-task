@@ -1,9 +1,9 @@
 <template>
     <v-container>
       <v-form @submit.prevent="login">
-        <v-text-field v-model="email" label="Email" required></v-text-field>
-        <v-text-field v-model="password" label="Password" type="password" required></v-text-field>
-        <v-btn type="submit" color="#4c9988" class="whiteText">Login</v-btn>
+        <v-text-field v-model="email" label="Email" type="email" clearable required></v-text-field>
+        <v-text-field v-model="password" label="Password" type="password" clearable required></v-text-field>
+        <v-btn type="submit" color="#4c9988" class="whiteText"  aria-label="Login Button">Login</v-btn>
       </v-form>
     </v-container>
   </template>

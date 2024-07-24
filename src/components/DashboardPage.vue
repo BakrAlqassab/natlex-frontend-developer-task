@@ -3,20 +3,19 @@
     <!-- <v-btn @click="logout">Logout</v-btn> -->
 
     <div class="d-flex flex-wrap">
-      <v-select v-model="selectedType" :items="chartTypes" label="Select Chart Type" class="ma-3 pa-6 boxShadow"></v-select>
-      <v-color-picker v-model="selectedColor" label="Select Line/Fill Color" class="ma-3 pa-6 boxShadow sm:w-100"></v-color-picker>
-      <v-select v-model="selectedSensors" :items="sensorOptions" class="ma-3 pa-6 boxShadow" label="Select Sensors" multiple></v-select>
-      <!-- <v-date-picker
-        v-model="dateRange"
-        label="Select Date"
-        @change="filterChartsByDate"
-      ></v-date-picker>  -->
+      <v-select v-model="selectedType" :items="chartTypes" label="Select Chart Type"
+        class="ma-3 pa-6 boxShadow"></v-select>
+      <v-color-picker v-model="selectedColor" label="Select Line/Fill Color"
+        class="ma-3 pa-6 boxShadow"></v-color-picker>
+      <v-select v-model="selectedSensors" :items="sensorOptions" class="ma-3 pa-6 boxShadow" label="Select Sensors"
+        multiple></v-select>
     </div>
 
     <v-btn @click="addChart" class="addChartBtn" color="#4c9988">Add Chart</v-btn>
-    <hr class="mb-3 bg-gray ha-2"/>
+    <hr class="mb-3 bg-gray ha-2" />
 
-    <v-date-picker class="w-50 ma-auto" v-model="dateRange" range label="Select Date Range" @change="filterChartsByDate"></v-date-picker>
+    <v-date-picker class="w-50 ma-auto" v-model="dateRange" range label="Select Date Range"
+      @change="filterChartsByDate"></v-date-picker>
     <div v-if="filteredCharts.length">
       <v-row>
         <v-col cols="12" v-for="(chart, index) in filteredCharts" :key="index">
@@ -25,7 +24,7 @@
       </v-row>
     </div>
     <div v-else class='noChartsDiv'>
-      <v-text class="noChartsText">No charts added yet!</v-text>
+      <span class="noChartsText">No charts added yet!</span>
     </div>
   </v-container>
 </template>
@@ -35,8 +34,10 @@
   import Sensor from '@/models/Sensor'
   import { mapState } from 'vuex'
   import { Chart } from 'highcharts-vue'
+  import ChartMixin from "../mixins/chart";
   
   export default {
+    mixins: [ChartMixin],
     components: {
       highcharts: Chart
     },
@@ -52,6 +53,7 @@
       }
     },
     mounted(){
+      this.adjustChartsDates()
       this.filterChartsByDate()
     },
     computed: {
@@ -59,14 +61,13 @@
       userCharts() {
         if (!this.authenticatedUser) return []
         const user = User.query().with('charts').find(this.authenticatedUser.id)
-        console.log('User Charts:', user ? user.charts : [])
-        // this.filterChartsByDate()
+     
         return user ? user.charts : []
       },
       sensorOptions() {
 
         // For have specific sensors for each user to collect data from
-        // to do that just add array called "sensors" in the model/Sensor and add the values in the initialValues actions.js, or have new UI Fields for that
+        // to do that just add array called "sensors" in the model/User and add the values in the initialValues actions.js, or have new UI Fields for that
         // PReferably is coming from DB or use static one
 
         // if (!this.authenticatedUser) return []
@@ -85,15 +86,10 @@
       },
     },
     watch: {
-      // selectedSensors(newVal) {
-      //   console.log('Selected Sensors:', newVal)
-      // },
-
       sensorOptions() {
         this.filterChartsByDate()
       },
       dateRange() {
-        // console.log('Date Range Changed:', newVal)
         this.filterChartsByDate()
       }
     },
@@ -107,45 +103,39 @@
           alert('Please select at least one sensor.')
           return
         }
-  
-        console.log('Selected Sensor IDs:', this.selectedSensors)
+
+        // this.selectedSensors represent the selected Sensor's drop-down ID's
+
         const selectedSensors = this.selectedSensors.map(id => {
           const sensor = Sensor.find(id)
-          console.log('Found Sensor:', sensor)
+        
           return sensor
         }).filter(sensor => sensor)
   
-        console.log('Selected Sensors:', selectedSensors)
+        // after check the drop-down id's, will fetch the related data based on the ID's
   
         const combinedData = this.combineSensorData(selectedSensors)
-                    // const dateObj = new Date();
-            // const month   = dateObj.getUTCMonth() + 1; // months from 1-12
-            // const day     = dateObj.getUTCDate();
-            // const year    = dateObj.getUTCFullYear();
-
-            // const newDate = year + "-" + month + "-" + day;
         const newChart = {
           type: this.selectedType,
           color: this.selectedColor,
           data: combinedData,
           createdAt: new Date().toISOString().substr(0, 10),
         }
-        console.log('New Chart:', newChart)
+        // collect the inserted data and add the current date
   
         const user = User.find(this.authenticatedUser.id)
         user.$update({
           charts: [...user.charts, newChart]
         })
   
-        console.log('Updated User Charts:', user.charts)
 
-        // Emit changes to local storage
+        // Emit changes to local storage, this will be active for the other tabs
         localStorage.setItem('my-vuex-store', JSON.stringify(this.$store.state));
   
-        // Update filtered charts
+        // Update filtered charts, this when add new charts
         this.filterChartsByDate()
   
-        // Force reactivity
+        // Force reactivity method forces a re-render of the Vue applicatio
         this.$forceUpdate()
       },
       combineSensorData(sensors) {
@@ -153,83 +143,19 @@
           name: sensor.type,
           data: sensor.readings
         }))
-        console.log('Combined Data:', combinedData)
+      
+      // Re-Structure the sensors data to match the charts requirements data
+
         return combinedData
       },
-      getChartOptions(chart) {
-        console.log('Chart Data:', chart)
-        return {
-          title: {
-            text: 'Sensor Data Chart'
-          },
-          chart: {
-            type: chart.type
-            },
-          series: chart.data.map(sensorData => ({
-            name: sensorData.name,
-            data: sensorData.data,
-            color: chart.color
-          })),
-          xAxis: {
-            categories: chart.data[0].data.map((_, index) => `Point ${index + 1}`)
-          },
-          yAxis: {
-            title: {
-              text: 'Values'
-            }
-          }
-        }
-      },
-      filterChartsByDate() {
-        if (!Array.isArray(this.dateRange) || this.dateRange.length !== 2) {
-          console.error('Invalid date range:', this.dateRange)
-          return
-        }
-        const [start, end] = this.dateRange
-        const startDate = new Date(start)
-        const endDate = new Date(end)
-        this.filteredCharts = this.userCharts.filter(chart => {
-        //   if (!chart.dateRange || !Array.isArray(chart.dateRange) || chart.dateRange.length !== 2) {
-        //     console.log("chart.dateRange")
-        //     console.log(chart.dateRange)
-        //     console.error('Invalid chart date range:', chart.dateRange)
-        //     return false
-        //   }
-
-        // check if the created chart have date
-
-        if (!chart.createdAt) {
-            console.error('Invalid chart date range:', chart.createdAt)
-            return false
-          }
-          const chartStartDate = new Date(chart.createdAt)
-    
-          // console.log(new Date(chart.dateRange))
-          // console.log(startDate)
-          // console.log(endDate)
-          // console.log( chartStartDate >= startDate )
-          // console.log(chartStartDate <= endDate)
-
-    
-        //   const [chartStart, chartEnd] = chart.dateRange
-        //   const chartStartDate = new Date(chartStart)
-        //   const chartEndDate = new Date(chartEnd)
-        return chartStartDate >= startDate && chartStartDate <= endDate
-        })
-        // console.log(this.userCharts)
-        // console.log('Filtered Charts:', this.filtefilteredChartsredCharts)
-      }
     }
   }
   </script>
-  
   <style scoped>
 
   .addChartBtn {
-    background-color: rgb(76, 153, 136);
     border-color: rgb(76, 153, 136);
     display: flex;
-
     width: 80%;
     margin: 20px auto;
     padding: 30px;
@@ -261,7 +187,6 @@
     display: flex;
     width: 100%;
     max-width: 100% !important;
-
   }
 }
 </style>
