@@ -2,7 +2,7 @@
 
 
 
-Live's link :  [here](https://natlex-frontend-developer-task.vercel.app/)
+## Production link :  [here](https://natlex-frontend-developer-task.vercel.app/)
 
 
 ![Project daiagram](https://i.ibb.co/F6LV8yZ/Screenshot-2024-07-23-151458.png?raw=true "Project's Diagram")
