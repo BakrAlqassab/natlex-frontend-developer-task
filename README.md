@@ -17,6 +17,7 @@
 - Utilizing a frontend library (Vuetify) for the UI
 - Managing state with Vuex ORM
 - Login, Logout, addNewDashboard changes reflect on all tabs
+- Accessibility check for control of the project by keyboard and the alt and description of the buttons and images exist.
 
 ## Ideas for the new version's Functionality
 
