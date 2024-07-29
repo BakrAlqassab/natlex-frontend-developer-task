@@ -1,4 +1,7 @@
-# natlex-frontend-developer-task
+# Sensors data Dashboards project
+
+
+![Project daiagram]([relative%20path/to/img.jpg](https://i.ibb.co/F6LV8yZ/Screenshot-2024-07-23-151458.png?raw=true "Project's Diagram")
 
 ## Project setup
 ```
@@ -13,11 +16,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### Customize configuration
