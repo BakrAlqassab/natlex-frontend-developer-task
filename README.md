@@ -1,7 +1,7 @@
 # Sensors data Dashboards project
 
 
-![Project daiagram]((https://i.ibb.co/F6LV8yZ/Screenshot-2024-07-23-151458.png?raw=true "Project's Diagram")
+![Project daiagram](https://i.ibb.co/F6LV8yZ/Screenshot-2024-07-23-151458.png?raw=true "Project's Diagram")
 
 ## Project setup
 ```
