@@ -17,6 +17,7 @@
 ## Idea's for new version's Functionality
 
 - add Node.js && MongoDB database for store user's and Dashboards results.
+- Auto import to the components under ``` /componetns/``` directory
 - fetch real Sensor's data
 - can be have the possiblity that each user have different Sensor's data permission to configure the Dashboard
 - have different permissions for norma User & Admin
@@ -48,11 +49,3 @@ npm run serve
 -  [Highchart](https://highcharts.com/docs/index)
 -  [Vuex](https://vuex.vuejs.org/)
 
-
-
-
-
-
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
