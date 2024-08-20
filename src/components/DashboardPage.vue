@@ -11,11 +11,15 @@
         multiple></v-select>
     </div>
 
-    <v-btn @click="addChart" class="addChartBtn" color="#4c9988">Add Chart</v-btn>
+    <v-btn @click="addChart" class="addChartBtn" color="#EE8E46">Add Chart</v-btn>
     <hr class="mb-3 bg-gray ha-2" />
-
-    <v-date-picker class="w-50 ma-auto" v-model="dateRange" range label="Select Date Range"
+    <div class="w-full">
+      <v-date-picker class="w-50 ma-auto max-w-96" v-model="dateRange" range label="Select Date Range"
       @change="filterChartsByDate"></v-date-picker>
+
+    </div>
+
+  
     <div v-if="filteredCharts.length">
       <v-row>
         <v-col cols="12" v-for="(chart, index) in filteredCharts" :key="index">

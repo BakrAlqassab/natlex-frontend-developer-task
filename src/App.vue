@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="#4c9988" dark>
+    <v-app-bar app color="#19485F" dark>
       <v-btn v-if="!isAuthenticated" to="/login" text>Login</v-btn>
       <v-btn v-if="!isAuthenticated" to="/register" text>Register</v-btn>
       <v-btn v-if="isAuthenticated" to="/dashboard" text>Dashboard</v-btn>
@@ -8,7 +8,7 @@
    
       <v-spacer></v-spacer>
       <div class="hidden-sm-and-down align-center" style="box-shadow: 0px 0px 8px lightblue inset; padding: 15px;">
-        <v-btn to="/" text color="#4c9988">
+        <v-btn to="/" text color="#19485F">
           <v-img alt="Vuetify Name" :elevation="20" class="shrink mt-1 hidden-sm-and-down" contain min-width="100"
             src="https://static.tildacdn.one/tild3233-6662-4763-a335-326231643561/_1.png" width="150" />
         </v-btn>
