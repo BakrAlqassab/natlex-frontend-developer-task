@@ -3,21 +3,21 @@
     <!-- <v-btn @click="logout">Logout</v-btn> -->
 
     <v-row class="mb-5" justify="center">
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="8">
         <v-card class="pa-3">
           <v-select v-model="selectedType" :items="chartTypes" label="Select Chart Type"
             class="ma-3 pa-6 boxShadow"></v-select>
         </v-card>
       </v-col>
 
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="4" >
         <v-card class="pa-3">
           <v-color-picker v-model="selectedColor" label="Select Line/Fill Color"
             class="ma-3 pa-6 boxShadow"></v-color-picker>
         </v-card>
       </v-col>
 
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="12">
         <v-card class="pa-3">
           <v-select v-model="selectedSensors" :items="sensorOptions" class="ma-3 pa-6 boxShadow" label="Select Sensors"
             multiple></v-select>
@@ -27,17 +27,23 @@
     </v-row>
 
     <v-row justify="center">
-      <v-btn color="orange darken-1" dark @click="addChart" class="px-5 py-3 elevation-4">
+      <v-col cols="12" md="12" justify="center" class="d-flex justify-center">
+      <v-btn color="#AFAFDA" dark @click="addChart" class="px-5 py-3 elevation-4 add-chart-btn">
         ADD CHART
       </v-btn>
+    </v-col>
+    <v-col cols="12" md="12">
+      
+    <hr class="my-3 bg-gray ha-2" />
+    </v-col>
+
     </v-row>
 
 
-    <hr class="my-3 bg-gray ha-2" />
 
     <v-row class="mt-5" justify="center">
-      <v-col cols="12" md="4">
-        <v-sheet class="elevation-3 pa-4 date-picker-container">
+      <v-col cols="12" sm="6" class="date-picker-container">
+        <v-sheet class="elevation-3 pa-4 ">
           <v-date-picker
             v-model="dateRange"
             range
@@ -52,9 +58,6 @@
       </v-col>
     </v-row>
 
-
-
-
     <div v-if="filteredCharts.length">
       <v-row>
         <v-col cols="12" v-for="(chart, index) in filteredCharts" :key="index">
@@ -63,7 +66,16 @@
       </v-row>
     </div>
     <div v-else class='noChartsDiv'>
-      <span class="noChartsText">No charts added yet!</span>
+      <v-col cols="12" md="4">
+        <v-sheet class="elevation-3 pa-4 no-charts-sheet">
+          <v-row justify="center" center>
+            <v-icon color="blue darken-2" large>mdi-chart-bar</v-icon>
+          </v-row>
+          <v-row justify="center" center>
+            <p class="no-charts-text">No charts added yet!</p>
+          </v-row>
+        </v-sheet>
+      </v-col>
     </div>
   </v-container>
 </template>
@@ -196,8 +208,7 @@
   <style scoped>
 
   .addChartBtn {
-    border-color: rgb(76, 153, 136);
-    display: flex;
+ 
     width: 80%;
     margin: 20px auto;
     padding: 30px;
@@ -224,6 +235,11 @@
   width: 250px;
 }
 
+::v-deep  .v-card {
+  display:flex;
+justify-content:center;
+}
+
 ::v-deep .styled-date-picker ,::v-deep .v-picker__body{
 
   width:100% !important
@@ -233,6 +249,7 @@
 @media screen and (max-width: 768px) {
   ::v-deep .v-color-picker {
     display: flex;
+    flex-direction: column;;
     width: 100%;
     max-width: 100% !important;
   }
