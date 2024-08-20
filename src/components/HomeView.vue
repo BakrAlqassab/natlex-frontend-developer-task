@@ -1,28 +1,35 @@
 <template>
   <v-container>
     <v-row class="text-center">
+
+      <v-col cols="12">
+        <h1>
+          Welcome to the Charts project with Mock sensors data
+        </h1>>
+
+      </v-col>
       <v-col cols="12" sm="6" md="4">
         <router-link :to="{ name: 'DashboardPage' }">
-        <v-card>
-          <v-card-title>Line Cahrt</v-card-title>
-          <v-card-subtitle>Project A</v-card-subtitle>
+          <v-card>
+            <v-card-title>Line Cahrt</v-card-title>
+            <v-card-subtitle>Project A</v-card-subtitle>
 
-          <v-img src="/images/line_chart.png" alt="Temperature chart" aspect-ratio="1.7"></v-img>
+            <v-img src="/images/line_chart.png" alt="Temperature chart" aspect-ratio="1.7"></v-img>
 
-        </v-card>
-      </router-link>
+          </v-card>
+        </router-link>
       </v-col>
 
       <v-col cols="12" sm="6" md="4">
         <router-link :to="{ name: 'DashboardPage' }">
-        <v-card>
-          <v-card-title>Bar Chart</v-card-title>
-          <v-card-subtitle>Project B</v-card-subtitle>
-          <v-card-text>
-            <v-img src="/images/bar_chart.png" alt="Humidity chart" aspect-ratio="1.7"></v-img>
-          </v-card-text>
-        </v-card>
-      </router-link>
+          <v-card>
+            <v-card-title>Bar Chart</v-card-title>
+            <v-card-subtitle>Project B</v-card-subtitle>
+            <v-card-text>
+              <v-img src="/images/bar_chart.png" alt="Humidity chart" aspect-ratio="1.7"></v-img>
+            </v-card-text>
+          </v-card>
+        </router-link>
       </v-col>
 
       <v-col cols="12" sm="6" md="4">

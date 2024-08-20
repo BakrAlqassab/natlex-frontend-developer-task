@@ -3,7 +3,7 @@
     <!-- <v-btn @click="logout">Logout</v-btn> -->
 
     <v-row class="mb-5" justify="center">
-      <v-col cols="12" md="8">
+      <v-col cols="12" md="4">
         <v-card class="pa-3">
           <v-select v-model="selectedType" :items="chartTypes" label="Select Chart Type"
             class="ma-3 pa-6 boxShadow"></v-select>
@@ -17,7 +17,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" md="12">
+      <v-col cols="12" md="4">
         <v-card class="pa-3">
           <v-select v-model="selectedSensors" :items="sensorOptions" class="ma-3 pa-6 boxShadow" label="Select Sensors"
             multiple></v-select>
