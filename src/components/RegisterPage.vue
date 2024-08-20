@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="register-container">
       <v-form @submit.prevent="register">
         <v-text-field v-model="name" label="Name" required  clearable></v-text-field>
         <v-text-field v-model="email" label="Email" type="email" clearable required></v-text-field>
@@ -46,6 +46,17 @@
   .whiteText {
     color: white !important;
   }
+
+  .register-container {
+ width:40%;
+ margin-top:5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .register-container {
+  width: 80%
+}
+}
 
 </style>
   

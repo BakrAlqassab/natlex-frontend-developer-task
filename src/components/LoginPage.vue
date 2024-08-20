@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="login-container">
       <v-form @submit.prevent="login">
         <v-text-field v-model="email" label="Email" type="email" clearable required></v-text-field>
         <v-text-field v-model="password" label="Password" type="password" clearable required></v-text-field>
@@ -40,6 +40,17 @@
 <style scoped>
 .whiteText {
   color: white !important;
+}
+
+.login-container {
+  width:40%;
+  margin-top:5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .login-container {
+  width:80%
+}
 }
 
 </style>

@@ -2,24 +2,59 @@
   <v-container>
     <!-- <v-btn @click="logout">Logout</v-btn> -->
 
-    <div class="d-flex flex-wrap">
-      <v-select v-model="selectedType" :items="chartTypes" label="Select Chart Type"
-        class="ma-3 pa-6 boxShadow"></v-select>
-      <v-color-picker v-model="selectedColor" label="Select Line/Fill Color"
-        class="ma-3 pa-6 boxShadow"></v-color-picker>
-      <v-select v-model="selectedSensors" :items="sensorOptions" class="ma-3 pa-6 boxShadow" label="Select Sensors"
-        multiple></v-select>
-    </div>
+    <v-row class="mb-5" justify="center">
+      <v-col cols="12" md="3">
+        <v-card class="pa-3">
+          <v-select v-model="selectedType" :items="chartTypes" label="Select Chart Type"
+            class="ma-3 pa-6 boxShadow"></v-select>
+        </v-card>
+      </v-col>
 
-    <v-btn @click="addChart" class="addChartBtn" color="#EE8E46">Add Chart</v-btn>
-    <hr class="mb-3 bg-gray ha-2" />
-    <div class="w-full d-flex">
-      <v-date-picker class="w-50 ma-auto max-w-96" v-model="dateRange" range label="Select Date Range"
-      @change="filterChartsByDate"></v-date-picker>
+      <v-col cols="12" md="3">
+        <v-card class="pa-3">
+          <v-color-picker v-model="selectedColor" label="Select Line/Fill Color"
+            class="ma-3 pa-6 boxShadow"></v-color-picker>
+        </v-card>
+      </v-col>
 
-    </div>
+      <v-col cols="12" md="3">
+        <v-card class="pa-3">
+          <v-select v-model="selectedSensors" :items="sensorOptions" class="ma-3 pa-6 boxShadow" label="Select Sensors"
+            multiple></v-select>
 
-  
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row justify="center">
+      <v-btn color="orange darken-1" dark @click="addChart" class="px-5 py-3 elevation-4">
+        ADD CHART
+      </v-btn>
+    </v-row>
+
+
+    <hr class="my-3 bg-gray ha-2" />
+
+    <v-row class="mt-5" justify="center">
+      <v-col cols="12" md="4">
+        <v-sheet class="elevation-3 pa-4 date-picker-container">
+          <v-date-picker
+            v-model="dateRange"
+            range
+            color="#19585F"
+            header-color="#19585F"
+            class="styled-date-picker"
+            @change="filterChartsByDate"
+          ></v-date-picker>
+        </v-sheet>
+
+
+      </v-col>
+    </v-row>
+
+
+
+
     <div v-if="filteredCharts.length">
       <v-row>
         <v-col cols="12" v-for="(chart, index) in filteredCharts" :key="index">
@@ -53,6 +88,7 @@
         selectedSensors: [],
         chartTypes: ['line', 'bar',"column"],
         dateRange: [new Date().toISOString().substr(0, 10), new Date().toISOString().substr(0, 10)],
+
         filteredCharts: []
       }
     },
@@ -93,7 +129,9 @@
       sensorOptions() {
         this.filterChartsByDate()
       },
-      dateRange() {
+      dateRange(v) {
+   
+        console.log(v)
         this.filterChartsByDate()
       }
     },
@@ -185,6 +223,12 @@
 ::v-deep  canvas {
   width: 250px;
 }
+
+::v-deep .styled-date-picker ,::v-deep .v-picker__body{
+
+  width:100% !important
+}
+
 
 @media screen and (max-width: 768px) {
   ::v-deep .v-color-picker {
