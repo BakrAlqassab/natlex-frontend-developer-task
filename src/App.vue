@@ -7,10 +7,15 @@
       <v-btn v-if="isAuthenticated" to="/admin" text>Admin</v-btn>
    
       <v-spacer></v-spacer>
-      <div class="hidden-sm-and-down align-center" style="box-shadow: 0px 0px 8px lightblue inset; padding: 15px;">
-        <v-btn to="/" text color="#19485F">
-          <v-img alt="Vuetify Name" :elevation="20" class="shrink mt-1 hidden-sm-and-down" contain min-width="100"
-            src="https://static.tildacdn.one/tild3233-6662-4763-a335-326231643561/_1.png" width="150" />
+      <div class="hidden-sm-and-down align-center" style="padding: 15px;">
+        <v-btn to="/" text color="#D9E0A4">
+      
+      <v-toolbar-title class="logo-title">
+        <v-icon left class="logo-icon animate-logo">mdi-chart-line</v-icon>
+        <span class="animate-logo">Vue-charts</span>
+      </v-toolbar-title>
+   
+
         </v-btn>
       </div>
 

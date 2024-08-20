@@ -4,7 +4,7 @@
         <v-text-field v-model="name" label="Name" required  clearable></v-text-field>
         <v-text-field v-model="email" label="Email" type="email" clearable required></v-text-field>
         <v-text-field v-model="password" label="Password" type="password" clearable required></v-text-field>
-        <v-btn type="submit" class="whiteText" color="#4c9988"  aria-label="Register new user button" >Register</v-btn>
+        <v-btn type="submit" class="whiteText" color="#19585F"  aria-label="Register new user button" >Register</v-btn>
       </v-form>
     </v-container>
   </template>

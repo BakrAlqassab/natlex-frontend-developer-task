@@ -13,7 +13,7 @@
 
     <v-btn @click="addChart" class="addChartBtn" color="#EE8E46">Add Chart</v-btn>
     <hr class="mb-3 bg-gray ha-2" />
-    <div class="w-full">
+    <div class="w-full d-flex">
       <v-date-picker class="w-50 ma-auto max-w-96" v-model="dateRange" range label="Select Date Range"
       @change="filterChartsByDate"></v-date-picker>
 

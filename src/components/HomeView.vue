@@ -1,52 +1,45 @@
 <template>
-    <v-container>
-      <v-row class="text-center">
+  <v-container>
+    <v-row class="text-center">
+      <v-col cols="12" sm="6" md="4">
+        <router-link :to="{ name: 'DashboardPage' }">
+        <v-card>
+          <v-card-title>Line Cahrt</v-card-title>
+          <v-card-subtitle>Project A</v-card-subtitle>
 
-        <v-col cols="12" sm="6" md="4">
-          <v-card>
-            <v-card-title>Temperature Sensor</v-card-title>
-            <v-card-subtitle>Project A</v-card-subtitle>
-            <v-card-text>
-              <v-img
-                src="https://via.placeholder.com/150"
-                alt="Temperature chart"
-                aspect-ratio="1.7"
-              ></v-img>
-            </v-card-text>
-          </v-card>
-        </v-col>
+          <v-img src="/images/line_chart.png" alt="Temperature chart" aspect-ratio="1.7"></v-img>
 
-        <v-col cols="12" sm="6" md="4">
-          <v-card>
-            <v-card-title>Humidity Sensor</v-card-title>
-            <v-card-subtitle>Project B</v-card-subtitle>
-            <v-card-text>
-              <v-img
-                src="https://via.placeholder.com/150"
-                alt="Humidity chart"
-                aspect-ratio="1.7"
-              ></v-img>
-            </v-card-text>
-          </v-card>
-        </v-col>
+        </v-card>
+      </router-link>
+      </v-col>
 
-        <v-col cols="12" sm="6" md="4">
+      <v-col cols="12" sm="6" md="4">
+        <router-link :to="{ name: 'DashboardPage' }">
+        <v-card>
+          <v-card-title>Bar Chart</v-card-title>
+          <v-card-subtitle>Project B</v-card-subtitle>
+          <v-card-text>
+            <v-img src="/images/bar_chart.png" alt="Humidity chart" aspect-ratio="1.7"></v-img>
+          </v-card-text>
+        </v-card>
+      </router-link>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="4">
+        <router-link :to="{ name: 'DashboardPage' }">
           <v-card>
-            <v-card-title>Pressure Sensor</v-card-title>
+            <v-card-title>Column Chart</v-card-title>
             <v-card-subtitle>Project C</v-card-subtitle>
             <v-card-text>
-              <v-img
-                src="https://via.placeholder.com/150"
-                alt="Pressure chart"
-                aspect-ratio="1.7"
-              ></v-img>
+              <v-img src="/images/column_chart.png" alt="Pressure chart" aspect-ratio="1.7"></v-img>
             </v-card-text>
           </v-card>
-        </v-col>
+        </router-link>
+      </v-col>
 
-        </v-row>
-    </v-container>
-  </template>
+    </v-row>
+  </v-container>
+</template>
   
   <script>
    import { mapState } from 'vuex'

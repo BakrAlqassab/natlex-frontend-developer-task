@@ -3,7 +3,7 @@
       <v-form @submit.prevent="login">
         <v-text-field v-model="email" label="Email" type="email" clearable required></v-text-field>
         <v-text-field v-model="password" label="Password" type="password" clearable required></v-text-field>
-        <v-btn type="submit" color="#4c9988" class="whiteText"  aria-label="Login Button">Login</v-btn>
+        <v-btn type="submit" color="#19585F" class="whiteText"  aria-label="Login Button">Login</v-btn>
       </v-form>
     </v-container>
   </template>
