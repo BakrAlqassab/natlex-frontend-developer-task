@@ -7,12 +7,12 @@
       <v-btn v-if="isAuthenticated" to="/admin" text>Admin</v-btn>
    
       <v-spacer></v-spacer>
-      <div class="hidden-sm-and-down align-center" style="padding: 15px;">
+      <div class="align-center" style="padding: 15px;">
         <v-btn to="/" text color="#D9E0A4">
       
-      <v-toolbar-title class="logo-title">
+      <v-toolbar-title class="logo-title text-subtitle-2 text-md-h6">
         <v-icon left class="logo-icon animate-logo">mdi-chart-line</v-icon>
-        <span class="animate-logo">Vue-charts</span>
+        <span class="animate-logo ">Vue-charts</span>
       </v-toolbar-title>
    
 
@@ -51,3 +51,5 @@ export default {
   }),
 };
 </script>
+
+

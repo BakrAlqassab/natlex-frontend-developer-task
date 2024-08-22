@@ -72,7 +72,7 @@
             <v-icon color="blue darken-2" large>mdi-chart-bar</v-icon>
           </v-row>
           <v-row justify="center" center>
-            <p class="no-charts-text">No charts added yet!</p>
+            <p>No charts added yet!</p>
           </v-row>
         </v-sheet>
       </v-col>

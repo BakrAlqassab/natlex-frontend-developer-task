@@ -41,10 +41,7 @@ export default {
             return chartStartDate >= startDate && chartStartDate <= endDate
             })
           },
-          getChartOptions(chart) {
-
-            // UI elements view
-    
+          getChartOptions(chart) {    
             return {
               title: {
                 text: 'Sensor Data Chart'

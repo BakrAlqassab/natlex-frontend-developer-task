@@ -71,19 +71,19 @@
             <h2>Users charts</h2>
         </div>
 
-        <v-row v-if="filteredCharts.length" style="display: flex; max-height: 1000px; overflow: auto;">
+        <v-row v-if="filteredCharts.length" class="charts">
             <v-col cols="12" v-for="(chart, index) in filteredCharts" :key="index">
                 <highcharts :options="getChartOptions(chart)"></highcharts>
             </v-col>
         </v-row>
         <div v-else >
-            <v-col cols="12" md="4" class=" no-charts-sheet">
-        <v-sheet class="elevation-3 pa-4 no-charts-sheet">
+            <v-col cols="12" md="4" class="no-charts-sheet">
+        <v-sheet class="elevation-3 pa-4">
           <v-row justify="center" center>
             <v-icon color="blue darken-2" large>mdi-chart-bar</v-icon>
           </v-row>
           <v-row justify="center" center>
-            <p class="no-charts-text">No charts added yet!</p>
+            <p >No charts added for this user yet!</p>
           </v-row>
         </v-sheet>
       </v-col>
@@ -156,11 +156,6 @@ export default {
     padding: 10px;
 }
 
-.card {
-   width:240px;
-   height:200px;
-    margin:10px
-}
 .user-slide-group {
   display: flex;
   justify-content: center;
@@ -223,6 +218,12 @@ width:100% !important
 
 .no-charts-sheet {
     margin:auto
+}
+
+.charts {
+  display: flex;
+   max-height: 1000px;
+    overflow: auto;
 }
 
 
